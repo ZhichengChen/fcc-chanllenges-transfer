@@ -47,6 +47,8 @@ function fileDisplay(filePath) {
               var jsonContent = content.challenges;
               for (var i = 0; i < jsonContent.length; i++) {
                 var test = 'tests:';
+
+                //get tests
                 for (var j = 0; j < jsonContent[i].tests.length; j++) {
                   if (jsonContent[i].tests[j].text) {
                     var testString;
@@ -94,14 +96,15 @@ function fileDisplay(filePath) {
     testString: ${testString}`;
                   }
                 }
-                var description, instructions;
+                //get description and instructions
+                var description=undefined, instructions;
                 for (var j = 0; j < jsonContent[i].description.length; j++) {
                   if (jsonContent[i].description[j] === '<hr>') {
                     description = jsonContent[i].description.slice(0, j);
                     instructions = jsonContent[i].description.slice(j + 1);
                   }
                 }
-                if (!description) {
+                if (description===undefined) {
                   description = jsonContent[i].description;
                   instructions = [];
                 }
